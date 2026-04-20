@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Política de referenciamento -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Segurança: CSP via meta (reforço; prefira HTTP headers no servidor) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 img-src 'self' data: https:;
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src 'self' https://fonts.gstatic.com data:;
+                 script-src 'self' https://www.googletagmanager.com;
+                 connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 form-action 'self';
+                 upgrade-insecure-requests;" />
+
+  <!-- SEO: Título e descrição -->
+  <title>Cake da Bina — Bolos Artesanais, Doces Finos e Ovos de Páscoa no Rio de Janeiro</title>
+  <meta name="description" content="Cake da Bina: bolos artesanais, doces finos e ovos de Páscoa feitos com carinho no Rio de Janeiro. Encomendas para aniversários, casamentos, batizados e datas especiais. Atendemos o Rio de Janeiro e região metropolitana." />
+  <meta name="keywords" content="bolos artesanais, bolos Rio de Janeiro, doces finos, ovos de páscoa, confeitaria artesanal, bolos de aniversário, bolos de casamento, Cake da Bina, confeiteira RJ" />
+  <meta name="author" content="Cake da Bina" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="language" content="Portuguese" />
+  <meta name="geo.region" content="BR-RJ" />
+  <meta name="geo.placename" content="Rio de Janeiro" />
+  <meta name="geo.position" content="-22.9068;-43.1729" />
+  <meta name="ICBM" content="-22.9068, -43.1729" />
+  <meta name="theme-color" content="#a86058" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://cakedabina.com.br/" />
+  <link rel="alternate" hreflang="pt-br" href="https://cakedabina.com.br/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://cakedabina.com.br/" />
+  <meta property="og:title" content="Cake da Bina — Bolos Artesanais e Doces Finos no Rio de Janeiro" />
+  <meta property="og:description" content="Bolos artesanais, doces finos e ovos de Páscoa feitos com carinho. Encomendas no Rio de Janeiro e região." />
+  <meta property="og:image" content="https://cakedabina.com.br/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bolo artesanal da Cake da Bina com acabamento elegante" />
+  <meta property="og:site_name" content="Cake da Bina" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cake da Bina — Bolos Artesanais no Rio de Janeiro" />
+  <meta name="twitter:description" content="Bolos artesanais, doces finos e ovos de Páscoa feitos com carinho. Encomendas no Rio de Janeiro e região." />
+  <meta name="twitter:image" content="https://cakedabina.com.br/assets/og-image.jpg" />
+
+  <!-- Ícones -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Preconnect para Google Fonts (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google Analytics 4 — substitua 'G-XXXXXXXXXX' pelo seu Measurement ID -->
+  <!-- Crie uma conta em: https://analytics.google.com/ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C0T5H3GDQ0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-C0T5H3GDQ0', {
+      'page_path': window.location.pathname,
+      'page_title': document.title
+    });
+  </script>
+
+  <!-- Dados estruturados (Schema.org) — LocalBusiness / Bakery -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Cake da Bina",
+    "image": "https://cakedabina.com.br/assets/og-image.jpg",
+    "url": "https://cakedabina.com.br/",
+    "telephone": "+55-21-99816-9458",
+    "priceRange": "$$",
+    "description": "Bolos artesanais, doces finos e ovos de Páscoa feitos com carinho. Atendimento no Rio de Janeiro e região metropolitana.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Rio de Janeiro",
+      "addressRegion": "RJ",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -22.9068,
+      "longitude": -43.1729
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Rio de Janeiro" },
+      { "@type": "City", "name": "Niterói" },
+      { "@type": "City", "name": "São Gonçalo" },
+      { "@type": "City", "name": "Duque de Caxias" },
+      { "@type": "City", "name": "Nova Iguaçu" },
+      { "@type": "City", "name": "São João de Meriti" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/cake_da_bina/"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+55-21-99816-9458",
+      "contactType": "customer service",
+      "areaServed": "BR",
+      "availableLanguage": ["Portuguese"]
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
+
+  <!-- Cabeçalho -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="Cake da Bina — Página inicial">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="40" height="40" focusable="false" aria-hidden="true">
+            <!-- Fundo blush circular (identidade do logotipo) -->
+            <circle cx="24" cy="24" r="22" fill="#edd4da"/>
+            <!-- Sparkles -->
+            <path d="M10.5 17 L11 15.3 L11.5 17 L13.2 17.5 L11.5 18 L11 19.7 L10.5 18 L8.8 17.5 Z" fill="#7b4640"/>
+            <path d="M36.5 29 L37 27.5 L37.5 29 L39 29.5 L37.5 30 L37 31.5 L36.5 30 L35 29.5 Z" fill="#7b4640"/>
+            <!-- Redoma (cloche) -->
+            <path d="M14 33 A10 10 0 0 1 34 33" fill="none" stroke="#7b4640" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Finial da redoma -->
+            <circle cx="24" cy="22.5" r="1" fill="#7b4640"/>
+            <!-- Bandeja / prato -->
+            <rect x="11" y="33" width="26" height="2.2" rx="1.1" fill="#7b4640"/>
+            <!-- Suporte do pedestal -->
+            <rect x="23" y="35.2" width="2" height="4.5" fill="#7b4640"/>
+            <rect x="19" y="39.7" width="10" height="2" rx="1" fill="#7b4640"/>
+            <!-- Cupcake: base (forma trapezoidal) -->
+            <path d="M20 33 L28 33 L27 27 L21 27 Z" fill="none" stroke="#7b4640" stroke-width="1.2" stroke-linejoin="round"/>
+            <line x1="22.8" y1="27" x2="22.4" y2="33" stroke="#7b4640" stroke-width="0.6"/>
+            <line x1="25.2" y1="27" x2="25.6" y2="33" stroke="#7b4640" stroke-width="0.6"/>
+            <!-- Cupcake: cobertura em swirl -->
+            <path d="M20.2 27 Q24 22.8 27.8 27" fill="none" stroke="#7b4640" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M22 25.6 Q24 24 26 25.6" fill="none" stroke="#7b4640" stroke-width="0.9" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">
+          <strong>Cake da Bina</strong>
+          <em>confeitaria artesanal</em>
+        </span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu de navegação">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre a Bina</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#atendimento">Atendimento</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Boas-vindas">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Rio de Janeiro • feito à mão</p>
+          <h1>Bolos que contam histórias,<br/>doces que ficam na lembrança.</h1>
+          <p class="lead">Na <strong>Cake da Bina</strong>, cada bolo, docinho e ovo de Páscoa é preparado com carinho, ingredientes selecionados e um toque artesanal que transforma momentos em memórias.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!%20Gostaria%20de%20fazer%20uma%20encomenda." target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.42ZM12.05 21.3h-.01a9.37 9.37 0 0 1-4.78-1.31l-.34-.2-3.72.98 1-3.63-.22-.37a9.37 9.37 0 0 1-1.43-4.85c0-5.18 4.21-9.39 9.4-9.39 2.5 0 4.86.98 6.63 2.76a9.32 9.32 0 0 1 2.74 6.64c0 5.18-4.22 9.38-9.27 9.38Zm5.43-7.03c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.18.2-.35.22-.65.07-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.75-1.66-2.05-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.21 5.09 4.5.71.31 1.26.5 1.69.64.71.22 1.35.19 1.86.11.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35Z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+            <a class="btn btn-ghost" href="#catalogo">Ver catálogo</a>
+          </div>
+          <ul class="hero-badges" aria-label="Nossos diferenciais">
+            <li><span>Feito à mão</span></li>
+            <li><span>Ingredientes selecionados</span></li>
+            <li><span>Entrega no Rio e região</span></li>
+          </ul>
+        </div>
+        <div class="hero-image" role="img" aria-label="Bolo artesanal elegante com flores de açúcar">
+          <div class="frame">
+            <img
+              src="images/hero-bolo.jpg"
+              alt="Bolo artesanal com cobertura elegante e detalhes em flores de açúcar"
+              width="720" height="860"
+              loading="eager" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="section section-about" aria-labelledby="sobre-title">
+      <div class="container grid-2">
+        <div class="about-image" aria-hidden="true">
+          <img
+            src="images/sobre-bina.jpg"
+            alt="Bina finalizando um bolo artesanal em sua bancada de confeitaria"
+            width="640" height="720"
+            loading="lazy" decoding="async" />
+        </div>
+        <div class="about-text">
+          <p class="eyebrow">Sobre a Bina</p>
+          <h2 id="sobre-title">Uma confeitaria feita de afeto, técnica e memória.</h2>
+          <p>A Cake da Bina nasceu do prazer de ver sorrisos se formando a cada fatia. Com anos de dedicação à confeitaria artesanal, a Bina transforma ingredientes simples em experiências inesquecíveis — bolos que marcam aniversários, doces que encantam casamentos e ovos de Páscoa que renovam o carinho entre quem ama.</p>
+          <p>Trabalhamos com receitas tradicionais da confeitaria brasileira e técnicas modernas de acabamento, sempre priorizando o sabor, a apresentação e a experiência de quem celebra.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo" class="section section-catalog" aria-labelledby="catalogo-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Catálogo</p>
+          <h2 id="catalogo-title">Nossas especialidades</h2>
+          <p class="section-sub">Cada criação é planejada com você. Ajustamos sabores, tamanhos e decoração para a sua ocasião.</p>
+        </header>
+
+        <div class="catalog-grid">
+          <article class="card card-highlight">
+            <div class="card-media">
+              <img src="images/bolos-casamento.jpg" alt="Bolo de casamento de três andares com textura em babado e rosas brancas naturais" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <span class="badge">Premium</span>
+              <h3>Bolos de Casamento</h3>
+              <p>Peças de múltiplos andares com acabamento artesanal em textura e flores naturais. Personalizamos sabores, topo e paleta para o seu grande dia — com degustação sob agendamento.</p>
+              <ul class="tags"><li>Casamento</li><li>Noivado</li><li>Bodas</li></ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/bolos-aniversario.jpg" alt="Bolo de aniversário tema praia em tons bege e azul com estrelas-do-mar decorativas" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>Bolos de Aniversário</h3>
+              <p>Bolos temáticos, infantis e sofisticados para cada história. Recheios autorais — do brigadeiro gourmet ao pistache com frutas vermelhas — e decoração sob medida para a sua data.</p>
+              <ul class="tags"><li>Aniversários</li><li>Infantil</li><li>Adulto</li></ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/ovos-pascoa.jpg" alt="Variedade de ovos de Páscoa artesanais decorados, incluindo trufado e branco com coelhinhos" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>Ovos de Páscoa</h3>
+              <p>Ovos artesanais recheados, decoração à mão com brigadeiro, doce de leite e ganache. Versões ao leite, meio amargo e branco, com embalagem especial. Encomendas a partir de fevereiro.</p>
+              <ul class="tags"><li>Ao leite</li><li>Meio amargo</li><li>Trufados</li></ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/bombons-doces.jpg" alt="Ovos de colher recheados com doce de leite e brigadeiro de chocolate" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>Bombons &amp; Doces</h3>
+              <p>Ovos de colher cremosos, bombons recheados e doces finos para presentear ou compor a sua mesa. Sabores clássicos e autorais, em embalagens personalizadas.</p>
+              <ul class="tags"><li>Ovo de colher</li><li>Bombons</li><li>Presentes</li></ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/fatias-bolo.jpg" alt="Fatia generosa de bolo recheado com doce de leite e brigadeiro" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>Fatias de Bolo</h3>
+              <p>Fatias individuais de bolos autorais para festas, eventos ou para saborear no dia a dia — sempre fresquinhas, com recheio generoso e massa úmida.</p>
+              <ul class="tags"><li>Fatias</li><li>Individual</li><li>Eventos</li></ul>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-media">
+              <img src="images/brownies.jpg" alt="Brownies artesanais embalados individualmente com selo da marca Cake by Bina" width="600" height="450" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-body">
+              <h3>Brownies</h3>
+              <p>Brownies densos de chocolate embalados individualmente com o selo da marca — prontos para presentear, vender em eventos ou compor lembranças. Disponíveis em unidades ou kits.</p>
+              <ul class="tags"><li>Chocolate</li><li>Kits</li><li>Lembranças</li></ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="catalog-cta">
+          <a class="btn btn-primary" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!%20Quero%20um%20or%C3%A7amento%20personalizado." target="_blank" rel="noopener">Fazer orçamento personalizado</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/cake_da_bina/" target="_blank" rel="noopener">Ver mais no Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATENDIMENTO -->
+    <section id="atendimento" class="section section-area" aria-labelledby="area-title">
+      <div class="container grid-2">
+        <div>
+          <p class="eyebrow">Área de atendimento</p>
+          <h2 id="area-title">Feito no Rio, entregue com carinho em toda a região.</h2>
+          <p>Atendemos a <strong>cidade do Rio de Janeiro</strong> e toda a <strong>região metropolitana</strong>, com combinação prévia de prazos e taxa de entrega conforme o bairro.</p>
+          <ul class="cities" aria-label="Cidades atendidas">
+            <li>Rio de Janeiro</li>
+            <li>Niterói</li>
+            <li>São Gonçalo</li>
+            <li>Duque de Caxias</li>
+            <li>Nova Iguaçu</li>
+            <li>São João de Meriti</li>
+            <li>Belford Roxo</li>
+            <li>Mesquita</li>
+            <li>Nilópolis</li>
+            <li>Magé</li>
+          </ul>
+          <p class="small">Não encontrou sua cidade? Chame no WhatsApp — avaliamos caso a caso.</p>
+        </div>
+        <aside class="area-card" aria-label="Como funciona a encomenda">
+          <h3>Como encomendar</h3>
+          <ol>
+            <li><strong>Envie sua ideia</strong> pelo WhatsApp: data do evento, sabores e referências de decoração.</li>
+            <li><strong>Receba o orçamento</strong> com sugestões personalizadas da Bina.</li>
+            <li><strong>Confirme com sinal</strong> e acompanhe cada etapa até a entrega.</li>
+          </ol>
+          <a class="btn btn-primary block" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!%20Quero%20iniciar%20uma%20encomenda." target="_blank" rel="noopener">Começar encomenda</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="section section-contact" aria-labelledby="contato-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="eyebrow">Contato</p>
+          <h2 id="contato-title">Vamos adoçar seu próximo momento?</h2>
+          <p class="section-sub">Fale diretamente com a Bina. Respondemos em horário comercial, de segunda a sábado.</p>
+        </header>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!" target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.42Z"/></svg>
+            </span>
+            <h3>WhatsApp</h3>
+            <p>Clique para iniciar uma conversa</p>
+            <span class="contact-value">(21) 99816-9458</span>
+          </a>
+
+          <a class="contact-card" href="tel:+5521998169458" aria-label="Ligar para Cake da Bina">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.24 1.02l-2.21 2.2Z"/></svg>
+            </span>
+            <h3>Telefone</h3>
+            <p>Ligação direta</p>
+            <span class="contact-value">+55 (21) 99816-9458</span>
+          </a>
+
+          <a class="contact-card" href="https://www.instagram.com/cake_da_bina/" target="_blank" rel="noopener" aria-label="Abrir Instagram da Cake da Bina">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.96.24 2.42.4.6.23 1.04.51 1.5.97.46.46.74.9.97 1.5.16.46.35 1.25.4 2.42.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.96-.4 2.42-.23.6-.51 1.04-.97 1.5-.46.46-.9.74-1.5.97-.46.16-1.25.35-2.42.4-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.96-.24-2.42-.4a4.15 4.15 0 0 1-1.5-.97 4.15 4.15 0 0 1-.97-1.5c-.16-.46-.35-1.25-.4-2.42C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.96.4-2.42.23-.6.51-1.04.97-1.5.46-.46.9-.74 1.5-.97.46-.16 1.25-.35 2.42-.4C8.42 2.17 8.8 2.16 12 2.16m0 2.16c-3.15 0-3.51.01-4.75.07-.99.05-1.53.21-1.89.35-.48.19-.82.41-1.18.77-.36.36-.58.7-.77 1.18-.14.36-.3.9-.35 1.89-.06 1.24-.07 1.6-.07 4.75s.01 3.51.07 4.75c.05.99.21 1.53.35 1.89.19.48.41.82.77 1.18.36.36.7.58 1.18.77.36.14.9.3 1.89.35 1.24.06 1.6.07 4.75.07s3.51-.01 4.75-.07c.99-.05 1.53-.21 1.89-.35.48-.19.82-.41 1.18-.77.36-.36.58-.7.77-1.18.14-.36.3-.9.35-1.89.06-1.24.07-1.6.07-4.75s-.01-3.51-.07-4.75c-.05-.99-.21-1.53-.35-1.89a3.2 3.2 0 0 0-.77-1.18 3.2 3.2 0 0 0-1.18-.77c-.36-.14-.9-.3-1.89-.35-1.24-.06-1.6-.07-4.75-.07Zm0 3.7a4.98 4.98 0 1 1 0 9.96 4.98 4.98 0 0 1 0-9.96Zm0 2.16a2.82 2.82 0 1 0 0 5.64 2.82 2.82 0 0 0 0-5.64Zm5.19-2.43a1.17 1.17 0 1 1 0 2.34 1.17 1.17 0 0 1 0-2.34Z"/></svg>
+            </span>
+            <h3>Instagram</h3>
+            <p>Acompanhe nosso dia a dia</p>
+            <span class="contact-value">@cake_da_bina</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-brand"><strong>Cake da Bina</strong> — confeitaria artesanal</p>
+        <p class="small">Feito com carinho no Rio de Janeiro • CNPJ sob solicitação</p>
+      </div>
+      <nav aria-label="Rodapé">
+        <a href="#sobre">Sobre</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#atendimento">Atendimento</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <p class="small copyright">© <span id="year">2026</span> Cake da Bina. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Botão flutuante WhatsApp -->
+  <a class="wa-float" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M20.52 3.48A11.85 11.85 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.28-1.65a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.42ZM17.48 14.27c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.18.2-.35.22-.65.07-.3-.15-1.26-.46-2.39-1.48-.88-.78-1.48-1.75-1.66-2.05-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.21 5.09 4.5.71.31 1.26.5 1.69.64.71.22 1.35.19 1.86.11.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35Z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
