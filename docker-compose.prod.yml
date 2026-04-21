@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  # Main web server
+  web:
+    image: ghcr.io/alexandrelima/cakedabina:latest
+    container_name: cakedabina-web
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./images:/usr/share/nginx/html/images:ro
+      - ./assets:/usr/share/nginx/html/assets:ro
+      - /etc/letsencrypt/:/etc/letsencrypt:ro
+    environment:
+      - TZ=America/Sao_Paulo
+      - NGINX_HOST=cakedabina.com.br
+      - NGINX_PORT=80
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    networks:
+      - web
+    labels:
+      - "com.example.description=Cake da Bina website"
+      - "com.example.version=1.0"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        labels: "service=cakedabina"
+
+  # Optional: Reverse proxy with SSL (Traefik)
+  # Uncomment if using Traefik for automatic SSL
+  # traefik:
+  #   image: traefik:v2.10
+  #   container_name: traefik
+  #   restart: always
+  #   command:
+  #     - "--api.insecure=false"
+  #     - "--providers.docker=true"
+  #     - "--entrypoints.web.address=:80"
+  #     - "--entrypoints.websecure.address=:443"
+  #     - "--certificatesresolvers.letsencrypt.acme.httpchallenge=true"
+  #     - "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web"
+  #     - "--certificatesresolvers.letsencrypt.acme.email=${LETSENCRYPT_EMAIL:-admin@cakedabina.com.br}"
+  #     - "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /letsencrypt:/letsencrypt
+  #   networks:
+  #     - web
+
+networks:
+  web:
+    driver: bridge
+
+volumes:
+  # Optional: Named volume for SSL certificates
+  # letsencrypt:
+  #   driver: local

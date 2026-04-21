@@ -1,0 +1,69 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+DEPLOYMENT.md
+*.md
+
+# GitHub
+.github
+.gitkeep
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+._*
+.AppleDouble
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+
+# Cache
+.cache
+.eslintcache
+*.tmp
+
+# Logs
+*.log
+logs/
+node_modules/.cache
+
+# Deployment
+.github/workflows
+docker-compose.yml
+docker-compose.prod.yml
+GO_LIVE.sh
+*.pem
+*.key
+*.pub
+
+# Testing
+coverage/
+.nyc_output
+
+# Docker
+Dockerfile
+.dockerignore
