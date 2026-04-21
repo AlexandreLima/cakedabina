@@ -26,10 +26,10 @@ check() {
 
     if eval "$command" > /dev/null 2>&1; then
         echo -e "${GREEN}✓${NC} $name"
-        ((CHECKS_PASSED++))
+        CHECKS_PASSED=$((CHECKS_PASSED + 1))
     else
         echo -e "${RED}✗${NC} $name"
-        ((CHECKS_FAILED++))
+        CHECKS_FAILED=$((CHECKS_FAILED + 1))
     fi
 }
 
