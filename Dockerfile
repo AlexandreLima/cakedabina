@@ -39,7 +39,7 @@ COPY assets/ /usr/share/nginx/html/assets/
 COPY site.webmanifest /usr/share/nginx/html/
 COPY sitemap.xml /usr/share/nginx/html/
 COPY robots.txt /usr/share/nginx/html/
-COPY .htaccess /usr/share/nginx/html/ 2>/dev/null || true
+COPY .htaccess /usr/share/nginx/html/
 
 # Set permissions
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
