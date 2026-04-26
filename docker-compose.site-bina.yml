@@ -1,0 +1,99 @@
+version: '3.9'
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Cake da Bina — Deploy via init container
+#
+# O serviço "init" baixa todos os arquivos do GitHub (branch main) para um
+# volume compartilhado. O serviço "web" (nginx:alpine) serve os arquivos.
+# Ambos conectam-se à rede "traefik-public" criada pelo projeto traefik.
+# ──────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── Inicialização: baixa todos os assets do GitHub ──────────────────────────
+  init:
+    image: alpine:latest
+    container_name: site-bina-init
+    restart: "no"
+    volumes:
+      - site-html:/html
+      - site-nginx:/nginx-conf
+    command: >-
+      sh -c "
+        set -e &&
+        echo '==> Instalando wget...' &&
+        apk add --no-cache wget &&
+        mkdir -p /html/images /html/assets &&
+        B=https://raw.githubusercontent.com/AlexandreLima/cakedabina/main &&
+        echo '==> Baixando arquivos do site...' &&
+        wget -qO /html/index.html       $$B/index.html &&
+        wget -qO /html/styles.css       $$B/styles.css &&
+        wget -qO /html/script.js        $$B/script.js &&
+        wget -qO /html/robots.txt       $$B/robots.txt &&
+        wget -qO /html/sitemap.xml      $$B/sitemap.xml &&
+        wget -qO /html/site.webmanifest $$B/site.webmanifest &&
+        echo '==> Baixando imagens...' &&
+        wget -qO /html/images/hero-bolo.jpg         $$B/images/hero-bolo.jpg &&
+        wget -qO /html/images/bolos-casamento.jpg   $$B/images/bolos-casamento.jpg &&
+        wget -qO /html/images/bolos-aniversario.jpg $$B/images/bolos-aniversario.jpg &&
+        wget -qO /html/images/bombons-doces.jpg     $$B/images/bombons-doces.jpg &&
+        wget -qO /html/images/brownies.jpg          $$B/images/brownies.jpg &&
+        wget -qO /html/images/fatias-bolo.jpg       $$B/images/fatias-bolo.jpg &&
+        wget -qO /html/images/ovos-pascoa.jpg       $$B/images/ovos-pascoa.jpg &&
+        wget -qO /html/images/sobre-bina.jpg        $$B/images/sobre-bina.jpg &&
+        echo '==> Baixando assets...' &&
+        wget -qO /html/assets/favicon.svg           $$B/assets/favicon.svg &&
+        wget -qO /html/assets/favicon-32.png        $$B/assets/favicon-32.png &&
+        wget -qO /html/assets/apple-touch-icon.png  $$B/assets/apple-touch-icon.png &&
+        wget -qO /html/assets/icon-192.png          $$B/assets/icon-192.png &&
+        wget -qO /html/assets/icon-512.png          $$B/assets/icon-512.png &&
+        wget -qO /html/assets/og-image.jpg          $$B/assets/og-image.jpg &&
+        echo '==> Baixando configuracao nginx...' &&
+        wget -qO /nginx-conf/default.conf           $$B/nginx.conf &&
+        echo '==> Download completo!' &&
+        ls -la /html/ && echo '--- images ---' && ls /html/images/ && echo '--- assets ---' && ls /html/assets/
+      "
+
+  # ── Web: nginx serve os arquivos baixados pelo init ─────────────────────────
+  web:
+    image: nginx:alpine
+    container_name: site-bina
+    restart: always
+    depends_on:
+      init:
+        condition: service_completed_successfully
+    volumes:
+      - site-html:/usr/share/nginx/html:ro
+      - site-nginx:/etc/nginx/conf.d:ro
+    networks:
+      - traefik-public
+    labels:
+      # Habilita Traefik para este container
+      - "traefik.enable=true"
+      # Router HTTP (Traefik já redireciona para HTTPS)
+      - "traefik.http.routers.site-bina.rule=Host(`cakedabina.com.br`) || Host(`www.cakedabina.com.br`)"
+      - "traefik.http.routers.site-bina.entrypoints=web"
+      - "traefik.http.routers.site-bina.service=site-bina"
+      # Router HTTPS com TLS + Let's Encrypt
+      - "traefik.http.routers.site-bina-tls.rule=Host(`cakedabina.com.br`) || Host(`www.cakedabina.com.br`)"
+      - "traefik.http.routers.site-bina-tls.entrypoints=websecure"
+      - "traefik.http.routers.site-bina-tls.tls=true"
+      - "traefik.http.routers.site-bina-tls.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.site-bina-tls.service=site-bina"
+      # Porta interna do nginx
+      - "traefik.http.services.site-bina.loadbalancer.server.port=80"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  site-html:
+  site-nginx:
+
+networks:
+  traefik-public:
+    external: true
+    name: traefik-public

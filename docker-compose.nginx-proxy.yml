@@ -1,0 +1,99 @@
+services:
+
+  # ── Init: escreve nginx.conf e obtém certificado Let's Encrypt ──────────────
+  init-ssl:
+    image: alpine:latest
+    container_name: nginx-init-ssl
+    restart: "no"
+    volumes:
+      - nginx-conf:/etc/nginx/conf.d
+      - nginx-certs:/etc/letsencrypt
+      - nginx-webroot:/var/www/html
+    command: >-
+      sh -c "
+        set -e &&
+        apk add --no-cache certbot &&
+
+        echo '==> Escrevendo nginx.conf temporária (só HTTP p/ challenge)...' &&
+        mkdir -p /etc/nginx/conf.d &&
+        cat > /etc/nginx/conf.d/default.conf << 'NGINXEOF'
+        server {
+          listen 80;
+          server_name cakedabina.com.br www.cakedabina.com.br;
+          root /var/www/html;
+          location /.well-known/acme-challenge/ { try_files $uri =404; }
+          location / { return 301 https://$host$request_uri; }
+        }
+        NGINXEOF
+
+        echo '==> Obtendo certificado Let's Encrypt...' &&
+        certbot certonly --webroot -w /var/www/html
+          -d cakedabina.com.br -d www.cakedabina.com.br
+          --email xandebre@gmail.com --agree-tos --non-interactive &&
+
+        echo '==> Escrevendo nginx.conf final com SSL...' &&
+        cat > /etc/nginx/conf.d/default.conf << 'NGINXEOF'
+        server {
+          listen 80;
+          server_name cakedabina.com.br www.cakedabina.com.br;
+          return 301 https://$host$request_uri;
+        }
+
+        server {
+          listen 443 ssl;
+          server_name cakedabina.com.br www.cakedabina.com.br;
+
+          ssl_certificate /etc/letsencrypt/live/cakedabina.com.br/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/cakedabina.com.br/privkey.pem;
+          ssl_protocols TLSv1.2 TLSv1.3;
+          ssl_ciphers HIGH:!aNULL:!MD5;
+
+          gzip on;
+          gzip_types text/plain text/css application/javascript application/json image/svg+xml;
+
+          location / {
+            proxy_pass http://site-bina:80;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto https;
+          }
+        }
+        NGINXEOF
+
+        echo '==> Configuração SSL concluída!'
+      "
+
+  # ── NGINX proxy com SSL ────────────────────────────────────────────────────
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    restart: always
+    depends_on:
+      init-ssl:
+        condition: service_completed_successfully
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - nginx-conf:/etc/nginx/conf.d:ro
+      - nginx-certs:/etc/letsencrypt:ro
+      - nginx-webroot:/var/www/html:ro
+    networks:
+      - traefik-public
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  nginx-conf:
+  nginx-certs:
+  nginx-webroot:
+
+networks:
+  traefik-public:
+    name: traefik-public
+    driver: bridge

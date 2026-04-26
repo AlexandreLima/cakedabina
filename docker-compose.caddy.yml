@@ -1,0 +1,48 @@
+services:
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    restart: always
+
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        cat > /tmp/Caddyfile << 'EOF'
+        {
+          email xandebre@gmail.com
+        }
+
+        http://cakedabina.com.br, http://www.cakedabina.com.br {
+          redir https://{host}{uri} permanent
+        }
+
+        https://cakedabina.com.br, https://www.cakedabina.com.br {
+          reverse_proxy site-bina:80
+          encode gzip
+          header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        }
+        EOF
+        caddy run --config /tmp/Caddyfile
+
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+
+    networks:
+      - traefik-public
+
+volumes:
+  caddy-data:
+  caddy-config:
+
+networks:
+  traefik-public:
+    name: traefik-public
+    driver: bridge

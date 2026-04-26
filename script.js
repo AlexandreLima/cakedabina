@@ -2,6 +2,12 @@
 (function () {
   'use strict';
 
+  // Carregamento não-bloqueante das Google Fonts (defer elimina render-blocking)
+  var fontLink = document.createElement('link');
+  fontLink.rel = 'stylesheet';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap';
+  document.head.appendChild(fontLink);
+
   // Ano dinâmico no rodapé
   var yearEl = document.getElementById('year');
   if (yearEl) { yearEl.textContent = String(new Date().getFullYear()); }

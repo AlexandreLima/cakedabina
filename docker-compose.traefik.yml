@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  traefik:
+    image: traefik:v3.3
+    container_name: traefik
+    restart: always
+
+    command:
+      # Entrypoints
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      # Redirect HTTP → HTTPS
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
+      # Docker provider
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=traefik-public
+      # Let's Encrypt
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge=true
+      - --certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.letsencrypt.acme.email=xandebre@gmail.com
+      - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
+      # API + Ping (healthcheck)
+      - --api=true
+      - --api.insecure=false
+      - --ping=true
+      - --log.level=INFO
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    environment:
+      - DOCKER_API_VERSION=1.47
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik-certs:/letsencrypt
+
+    networks:
+      - traefik-public
+
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  traefik-certs:
+
+networks:
+  traefik-public:
+    name: traefik-public
+    driver: bridge

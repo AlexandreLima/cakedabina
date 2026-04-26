@@ -10,7 +10,7 @@
   --rose:      #a86058;        /* terracotta/rose do logotipo */
   --rose-dark: #7b4640;
   --rose-soft: #e7c6ca;
-  --gold:      #b08748;
+  --gold:      #856528;        /* escurecido para contraste WCAG AA (ratio ≥4.5:1) */
   --gold-2:    #e9c58a;
   --ink:       #2e2424;        /* texto principal */
   --ink-soft:  #5a4a47;
@@ -586,6 +586,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 
 /* Imagens quebradas: mostra gradient de fundo suave */
 img { background-color: var(--cream-2); }
+
+/* ── Footer: corrigir contraste WCAG AA (texto claro sobre fundo escuro) ── */
+.site-footer p,
+.site-footer strong { color: #f0ddd5; }
+.site-footer .copyright { color: #d9bfb2; }
 
 /* Revelação progressiva ao scroll */
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--ease), transform .6s var(--ease); }

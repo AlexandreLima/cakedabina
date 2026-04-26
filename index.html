@@ -8,15 +8,14 @@
   <!-- Política de referenciamento -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-  <!-- Segurança: CSP via meta (reforço; prefira HTTP headers no servidor) -->
+  <!-- Segurança: CSP via meta (reforço; frame-ancestors só funciona em HTTP header) -->
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
                  img-src 'self' data: https:;
                  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                  font-src 'self' https://fonts.gstatic.com data:;
-                 script-src 'self' https://www.googletagmanager.com;
+                 script-src 'self' https://www.googletagmanager.com 'sha256-m+Gu2TtL8lX3XWXIX2G4lACSu/EYZCqre7qF1f3kMW4=';
                  connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;
-                 frame-ancestors 'none';
                  base-uri 'self';
                  form-action 'self';
                  upgrade-insecure-requests;" />
@@ -63,10 +62,13 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
 
-  <!-- Preconnect para Google Fonts (performance) -->
+  <!-- Preconnect para Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" />
+  <!-- Fontes carregadas de forma não-bloqueante via script.js (defer) -->
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" />
+  </noscript>
 
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
@@ -216,11 +218,18 @@
         </div>
         <div class="hero-image" role="img" aria-label="Bolo artesanal elegante com flores de açúcar">
           <div class="frame">
-            <img
-              src="images/hero-bolo.jpg"
-              alt="Bolo artesanal com cobertura elegante e detalhes em flores de açúcar"
-              width="720" height="860"
-              loading="eager" decoding="async" />
+            <picture>
+              <source
+                srcset="images/hero-bolo-800w.webp 800w, images/hero-bolo.webp 1432w"
+                type="image/webp"
+                sizes="(max-width: 960px) 80vw, 50vw" />
+              <img
+                src="images/hero-bolo.jpg"
+                alt="Bolo artesanal com cobertura elegante e detalhes em flores de açúcar"
+                width="720" height="860"
+                loading="eager" decoding="async"
+                fetchpriority="high" />
+            </picture>
           </div>
         </div>
       </div>
@@ -230,11 +239,14 @@
     <section id="sobre" class="section section-about" aria-labelledby="sobre-title">
       <div class="container grid-2">
         <div class="about-image" aria-hidden="true">
-          <img
-            src="images/sobre-bina.jpg"
-            alt="Bina finalizando um bolo artesanal em sua bancada de confeitaria"
-            width="640" height="720"
-            loading="lazy" decoding="async" />
+          <picture>
+            <source srcset="images/sobre-bina.webp" type="image/webp" />
+            <img
+              src="images/sobre-bina.jpg"
+              alt="Bina finalizando um bolo artesanal em sua bancada de confeitaria"
+              width="640" height="720"
+              loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="about-text">
           <p class="eyebrow">Sobre a Bina</p>
@@ -257,7 +269,10 @@
         <div class="catalog-grid">
           <article class="card card-highlight">
             <div class="card-media">
-              <img src="images/bolos-casamento.jpg" alt="Bolo de casamento de três andares com textura em babado e rosas brancas naturais" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/bolos-casamento-800w.webp 800w, images/bolos-casamento.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/bolos-casamento.jpg" alt="Bolo de casamento de três andares com textura em babado e rosas brancas naturais" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <span class="badge">Premium</span>
@@ -269,7 +284,10 @@
 
           <article class="card">
             <div class="card-media">
-              <img src="images/bolos-aniversario.jpg" alt="Bolo de aniversário tema praia em tons bege e azul com estrelas-do-mar decorativas" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/bolos-aniversario-800w.webp 800w, images/bolos-aniversario.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/bolos-aniversario.jpg" alt="Bolo de aniversário tema praia em tons bege e azul com estrelas-do-mar decorativas" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <h3>Bolos de Aniversário</h3>
@@ -280,7 +298,10 @@
 
           <article class="card">
             <div class="card-media">
-              <img src="images/ovos-pascoa.jpg" alt="Variedade de ovos de Páscoa artesanais decorados, incluindo trufado e branco com coelhinhos" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/ovos-pascoa-800w.webp 800w, images/ovos-pascoa.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/ovos-pascoa.jpg" alt="Variedade de ovos de Páscoa artesanais decorados, incluindo trufado e branco com coelhinhos" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <h3>Ovos de Páscoa</h3>
@@ -291,7 +312,10 @@
 
           <article class="card">
             <div class="card-media">
-              <img src="images/bombons-doces.jpg" alt="Ovos de colher recheados com doce de leite e brigadeiro de chocolate" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/bombons-doces-800w.webp 800w, images/bombons-doces.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/bombons-doces.jpg" alt="Ovos de colher recheados com doce de leite e brigadeiro de chocolate" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <h3>Bombons &amp; Doces</h3>
@@ -302,7 +326,10 @@
 
           <article class="card">
             <div class="card-media">
-              <img src="images/fatias-bolo.jpg" alt="Fatia generosa de bolo recheado com doce de leite e brigadeiro" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/fatias-bolo-800w.webp 800w, images/fatias-bolo.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/fatias-bolo.jpg" alt="Fatia generosa de bolo recheado com doce de leite e brigadeiro" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <h3>Fatias de Bolo</h3>
@@ -313,7 +340,10 @@
 
           <article class="card">
             <div class="card-media">
-              <img src="images/brownies.jpg" alt="Brownies artesanais embalados individualmente com selo da marca Cake by Bina" width="600" height="450" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="images/brownies-800w.webp 800w, images/brownies.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
+                <img src="images/brownies.jpg" alt="Brownies artesanais embalados individualmente com selo da marca Cake by Bina" width="600" height="450" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="card-body">
               <h3>Brownies</h3>
