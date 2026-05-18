@@ -422,6 +422,84 @@ ul, ol { padding-left: 1.2em; }
   flex-wrap: wrap;
 }
 
+/* ─── LIGHTBOX ──────────────────────────────────────────────── */
+/* Cursor e ícone de zoom sobre as cards */
+.card-media.zoomable {
+  position: relative;
+  cursor: zoom-in;
+}
+.card-media.zoomable::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    rgba(0,0,0,0)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='16.5' y1='16.5' x2='21' y2='21'/%3E%3Cline x1='11' y1='8' x2='11' y2='14'/%3E%3Cline x1='8' y1='11' x2='14' y2='11'/%3E%3C/svg%3E")
+    center / 38px no-repeat;
+  opacity: 0;
+  transition: opacity .3s var(--ease), background-color .3s var(--ease);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.card-media.zoomable:hover::after,
+.card-media.zoomable:focus-visible::after {
+  background-color: rgba(0,0,0,.28);
+  opacity: 1;
+}
+
+/* Overlay escuro */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9100;
+  background: rgba(12,8,6,.93);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity .3s var(--ease);
+}
+.lightbox:not([hidden]) { opacity: 1; }
+.lightbox[hidden] { display: none; }
+
+/* Figura e imagem */
+.lightbox-figure {
+  margin: 0;
+  max-width: min(94vw, 960px);
+  text-align: center;
+}
+.lightbox-img {
+  max-width: 100%; max-height: 82vh;
+  object-fit: contain; display: block;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 28px 72px rgba(0,0,0,.55);
+  transform: scale(.9);
+  transition: transform .35s var(--ease);
+  cursor: default;
+}
+.lightbox:not([hidden]) .lightbox-img { transform: scale(1); }
+
+/* Legenda */
+.lightbox-caption {
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: .875rem;
+  letter-spacing: .02em;
+  margin-top: .9rem;
+  opacity: .7;
+}
+
+/* Botão fechar */
+.lightbox-close {
+  position: absolute; top: 1rem; right: 1.2rem;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  width: 2.4rem; height: 2.4rem;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.4rem; line-height: 1;
+  cursor: pointer;
+  transition: background .2s;
+}
+.lightbox-close:hover { background: rgba(255,255,255,.25); }
+
 /* ============ Área de atendimento ============ */
 .section-area {
   background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);

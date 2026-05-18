@@ -268,7 +268,7 @@
 
         <div class="catalog-grid">
           <article class="card card-highlight">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Bolos de Casamento" data-lightbox="images/bolos-casamento.webp" data-lightbox-alt="Bolo de casamento de três andares com textura em babado e rosas brancas naturais">
               <picture>
                 <source srcset="images/bolos-casamento-800w.webp 800w, images/bolos-casamento.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/bolos-casamento.jpg" alt="Bolo de casamento de três andares com textura em babado e rosas brancas naturais" width="600" height="450" loading="lazy" decoding="async" />
@@ -283,7 +283,7 @@
           </article>
 
           <article class="card">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Bolos de Aniversário" data-lightbox="images/bolos-aniversario.webp" data-lightbox-alt="Bolo de aniversário tema praia em tons bege e azul com estrelas-do-mar decorativas">
               <picture>
                 <source srcset="images/bolos-aniversario-800w.webp 800w, images/bolos-aniversario.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/bolos-aniversario.jpg" alt="Bolo de aniversário tema praia em tons bege e azul com estrelas-do-mar decorativas" width="600" height="450" loading="lazy" decoding="async" />
@@ -297,7 +297,7 @@
           </article>
 
           <article class="card">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Ovos de Páscoa" data-lightbox="images/ovos-pascoa.webp" data-lightbox-alt="Variedade de ovos de Páscoa artesanais decorados, incluindo trufado e branco com coelhinhos">
               <picture>
                 <source srcset="images/ovos-pascoa-800w.webp 800w, images/ovos-pascoa.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/ovos-pascoa.jpg" alt="Variedade de ovos de Páscoa artesanais decorados, incluindo trufado e branco com coelhinhos" width="600" height="450" loading="lazy" decoding="async" />
@@ -311,7 +311,7 @@
           </article>
 
           <article class="card">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Bombons e Doces" data-lightbox="images/bombons-doces.webp" data-lightbox-alt="Ovos de colher recheados com doce de leite e brigadeiro de chocolate">
               <picture>
                 <source srcset="images/bombons-doces-800w.webp 800w, images/bombons-doces.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/bombons-doces.jpg" alt="Ovos de colher recheados com doce de leite e brigadeiro de chocolate" width="600" height="450" loading="lazy" decoding="async" />
@@ -325,7 +325,7 @@
           </article>
 
           <article class="card">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Fatias de Bolo" data-lightbox="images/fatias-bolo.webp" data-lightbox-alt="Fatia generosa de bolo recheado com doce de leite e brigadeiro">
               <picture>
                 <source srcset="images/fatias-bolo-800w.webp 800w, images/fatias-bolo.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/fatias-bolo.jpg" alt="Fatia generosa de bolo recheado com doce de leite e brigadeiro" width="600" height="450" loading="lazy" decoding="async" />
@@ -339,7 +339,7 @@
           </article>
 
           <article class="card">
-            <div class="card-media">
+            <div class="card-media zoomable" role="button" tabindex="0" aria-label="Ampliar foto de Brownies" data-lightbox="images/brownies.webp" data-lightbox-alt="Brownies artesanais embalados individualmente com selo da marca Cake by Bina">
               <picture>
                 <source srcset="images/brownies-800w.webp 800w, images/brownies.webp 1200w" type="image/webp" sizes="(max-width: 720px) 100vw, (max-width: 960px) 50vw, 400px" />
                 <img src="images/brownies.jpg" alt="Brownies artesanais embalados individualmente com selo da marca Cake by Bina" width="600" height="450" loading="lazy" decoding="async" />
@@ -451,6 +451,15 @@
       <p class="small copyright">© <span id="year">2026</span> Cake da Bina. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada" hidden>
+    <button class="lightbox-close" aria-label="Fechar">&times;</button>
+    <figure class="lightbox-figure">
+      <img class="lightbox-img" src="" alt="" />
+      <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+  </div>
 
   <!-- Botão flutuante WhatsApp -->
   <a class="wa-float" href="https://wa.me/5521998169458?text=Ol%C3%A1%2C%20Bina!" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">

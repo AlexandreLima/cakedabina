@@ -48,6 +48,53 @@
     });
   });
 
+  // ── LIGHTBOX ────────────────────────────────────────────────
+  var lb        = document.getElementById('lightbox');
+  var lbImg     = lb && lb.querySelector('.lightbox-img');
+  var lbCaption = lb && lb.querySelector('.lightbox-caption');
+  var lbClose   = lb && lb.querySelector('.lightbox-close');
+  var lbTrigger = null;
+
+  function openLightbox(src, alt) {
+    lbImg.src             = src;
+    lbImg.alt             = alt || '';
+    lbCaption.textContent = alt || '';
+    lb.hidden             = false;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function closeLightbox() {
+    lb.hidden = true;
+    document.body.style.overflow = '';
+    lbImg.src = '';
+    if (lbTrigger) { lbTrigger.focus(); lbTrigger = null; }
+  }
+
+  if (lb) {
+    document.querySelectorAll('.card-media.zoomable').forEach(function (el) {
+      el.addEventListener('click', function () {
+        lbTrigger = el;
+        openLightbox(el.dataset.lightbox, el.dataset.lightboxAlt);
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+
+    lb.addEventListener('click', function (e) {
+      if (e.target === lb || e.target === lb.querySelector('.lightbox-figure')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !lb.hidden) closeLightbox();
+    });
+  }
+
   // Revela progressivamente cards/seções com IntersectionObserver
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
